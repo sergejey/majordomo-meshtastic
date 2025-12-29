@@ -1,0 +1,36 @@
+<form action="?" method="post" class="form-inline">
+    <div class="form-group">
+        <input type="text" name="message" placeholder="Message..." value="" class="form-control">
+    </div>
+    <div class="form-group">
+        <input type="submit" name="subm" value="<#LANG_SEND#>" class="btn btn-default">
+    </div>
+    <input type="hidden" name="mode" value="send">
+    <input type="hidden" name="view_mode" value="<#VIEW_MODE#>">
+    <input type="hidden" name="id" value="[#ID#]">
+    <input type="hidden" name="tab" value="<#TAB#>">
+</form>
+&nbsp;
+[#if TEXTS#]
+<table class="table">
+    <thead>
+    <tr>
+        <th><#LANG_ADDED#></th>
+        <th>From</th>
+        <th>To</th>
+        <th>Message</th>
+        <th>Channel</th>
+    </tr>
+    </thead>
+    [#begin TEXTS#]
+    <tr>
+        <td>[#ADDED#]</td>
+        <td>[#FROM_UID#]</td>
+        <td>[#TO_UID#]</td>
+        <td>[#MESSAGE#]</td>
+        <td>[#CHANNEL#]</td>
+    </tr>
+    [#end TEXTS#]
+</table>
+[#else TEXTS#]
+[#endif TEXTS#]

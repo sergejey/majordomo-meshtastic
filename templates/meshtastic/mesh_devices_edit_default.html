@@ -1,0 +1,107 @@
+
+<!-- Table 'mesh_devices' edit -->
+<form action="?" method="post" enctype="multipart/form-data" name="frmEdit" class="form-horizontal">
+[#if OK#]
+<div class="alert alert-success"><#LANG_DATA_SAVED#></div>
+[#endif OK#]
+[#if ERR#]
+<div class="alert alert-danger"><#LANG_FILLOUT_REQURED#></div>
+[#endif ERR#]
+<fieldset>
+[#if ID=""#]
+<legend><#LANG_NEW_RECORD#></legend>
+[#endif ID#]
+<!-- TITLE (varchar) -->
+<div class="form-group[#if ERR_TITLE#] has-error[#endif#]">
+ <label for="title" class="col-lg-5 control-label">
+ <#LANG_TITLE#>:
+ (*)
+ </label>
+ <div class="col-lg-7"><input id="title" name="title" value="[#TITLE#]" type="text" class="form-control"></div>
+</div>
+
+ <div class="form-group">
+  <label class="col-lg-5 control-label">
+   Track <a href="<#ROOTHTML#>panel/app_gpstrack.html" target="_blank">GPS data</a>:
+  </label>
+  <div class="col-lg-7">
+   <input type="radio" value="1" name="is_gps_tracker" [#if IS_GPS_TRACKER="1"#] checked[#endif#]> <#LANG_YES#>
+   <input type="radio" value="0" name="is_gps_tracker" [#if IS_GPS_TRACKER!="1"#] checked[#endif#]> <#LANG_NO#>
+  </div>
+ </div>
+
+ <div class="form-group">
+  <label class="col-lg-5 control-label">
+   Allow system control by direct messages to gateway:
+  </label>
+  <div class="col-lg-7">
+   <input type="radio" value="1" name="allow_control" [#if ALLOW_CONTROL="1"#] checked[#endif#]> <#LANG_YES#>
+   <input type="radio" value="0" name="allow_control" [#if ALLOW_CONTROL!="1"#] checked[#endif#]> <#LANG_NO#>
+  </div>
+ </div>
+
+ <div class="form-group">
+  <label class="col-lg-5 control-label">
+   <#LANG_CAN_TTS#>:
+  </label>
+  <div class="col-lg-7">
+   <input type="radio" value="1" name="send_system_messages" [#if SEND_SYSTEM_MESSAGES="1"#] checked[#endif#]> <#LANG_YES#>
+   <input type="radio" value="0" name="send_system_messages" [#if SEND_SYSTEM_MESSAGES!="1"#] checked[#endif#]> <#LANG_NO#>
+  </div>
+ </div>
+ <div class="form-group">
+  <label class="col-lg-5 control-label">
+   <#LANG_MIN_MSG_LEVEL#>:
+  </label>
+  <div class="col-lg-7">
+  <input type="text" name="min_msg_level" value="[#MIN_MSG_LEVEL#]" class="form-control">
+   </div>
+ </div>
+
+<!-- UID (varchar) -->
+<div class="form-group">
+ <label for="uid" class="col-lg-5 control-label">
+ UID:
+ </label>
+ <div class="col-lg-7"><input id="uid" name="uid" value="[#UID#]" disabled type="text" class="form-control"></div>
+</div>
+
+ <div class="form-group">
+  <label for="short_name" class="col-lg-5 control-label">
+   Short name:
+  </label>
+  <div class="col-lg-7"><input id="short_name" name="short_name" value="[#SHORT_NAME#]" disabled type="text" class="form-control"></div>
+ </div>
+
+ <div class="form-group">
+  <label for="long_name" class="col-lg-5 control-label">
+   Long name:
+  </label>
+  <div class="col-lg-7"><input id="long_name" name="long_name" value="[#LONG_NAME#]" disabled type="text" class="form-control"></div>
+ </div>
+
+ <div class="form-group">
+  <label for="hardware" class="col-lg-5 control-label">
+   Hardware:
+  </label>
+  <div class="col-lg-7"><input id="hardware" name="hardware" value="[#HARDWARE#]" disabled type="text" class="form-control"></div>
+ </div>
+
+<div class="form-group">
+        <div class="col-lg-offset-5 col-lg-7">
+ [#if ID!=""#]
+ <button type="submit" name="subm" value="Submit" class="btn btn-primary"><#LANG_SUBMIT#></button>
+ [#else ID#]
+ <button type="submit" name="subm" value="Add" class="btn btn-primary"><#LANG_ADD#></button>
+ [#endif ID#]
+ <a href="?data_source=<#DATA_SOURCE#>" class="btn btn-default "><#LANG_CANCEL#></a>
+<input type="hidden" name="id" value="<#ID#>">
+<input type="hidden" name="view_mode" value="<#VIEW_MODE#>">
+<input type="hidden" name="edit_mode" value="<#EDIT_MODE#>">
+<input type="hidden" name="mode" value="update">
+<input type="hidden" name="data_source" value="<#DATA_SOURCE#>">
+<input type="hidden" name="tab" value="<#TAB#>">
+        </div>
+</div>
+</fieldset>
+</form>

@@ -1,0 +1,26 @@
+<div>
+    <#LANG_TYPE#>:
+    <a href="?view_mode=<#VIEW_MODE#>&tab=<#TAB#>&id=<#ID#>&type="[#if TYPE=""#] style="font-weight:bold;"[#endif#]><#LANG_ALL#></a>
+[#begin TYPES#]
+    // <a href="?view_mode=<#VIEW_MODE#>&tab=<#TAB#>&id=<#ID#>&type=[#MESSAGE_TYPE#]"[#if MESSAGE_TYPE="<#TYPE#>"#] style="font-weight:bold;"[#endif#]>[#MESSAGE_TYPE#]</a>
+[#end TYPES#]
+</div>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th><#LANG_ADDED#></th>
+        <th><#LANG_TYPE#></th>
+        <th><#LANG_DATA#></th>
+    </tr>
+    </thead>
+    [#begin MESSAGES#]
+    <tr>
+        <td>[#ADDED#]
+            <a href="?view_mode=<#VIEW_MODE#>&tab=<#TAB#>&id=<#ID#>&type=<#TYPE#>&process=[#ID#]" onClick="return confirm('<#LANG_ARE_YOU_SURE#>')"><i class="glyphicon glyphicon-refresh"></i></a>
+        </td>
+        <td>[#MESSAGE_TYPE#]</td>
+        <td><pre style="font-size: 9px">[#PAYLOAD#]</pre></td>
+    </tr>
+    [#end MESSAGES#]
+</table>

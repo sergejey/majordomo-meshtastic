@@ -1,0 +1,87 @@
+<div class="row">
+ <div class="col-md-6">
+  <table class="table table-stripped">
+   <tr>
+    <td><#LANG_TITLE#></td>
+    <td><#LANG_VALUE#></td>
+    <td><#LANG_UPDATED#></td>
+    <td><#LANG_LINKED_OBJECT#></td>
+    <td>&nbsp;nbsp;</td>
+   </tr>
+   [#begin PROPERTIES#]
+   <tr>
+    <td><b><a href="?id=<#ID#>&tab=<#TAB#>&view_mode=<#VIEW_MODE#>&property_id=[#ID#]">[#TITLE#]</a></b></td>
+    <td>[#VALUE#]</td>
+    <td >[#UPDATED#]</td>
+    <td>
+     [#if LINKED_OBJECT!=""#][#LINKED_OBJECT#][#endif#]
+     [#if LINKED_PROPERTY!=""#].[#LINKED_PROPERTY#][#endif#]
+     [#if LINKED_METHOD!=""#] &gt; [#LINKED_METHOD#][#endif#]
+    </td>
+    <td><a href="?id=<#ID#>&tab=<#TAB#>&view_mode=<#VIEW_MODE#>&property_id=[#ID#]" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i></td>
+    <!--#
+    <td><a href="?id=<#ID#>&tab=<#TAB#>&view_mode=<#VIEW_MODE#>&delete_id=[#ID#]" onClick="return confirm('<#LANG_ARE_YOU_SURE#>');" class="btn btn-default"><i class="glyphicon glyphicon-remove"></i></td>
+    #-->
+   </tr>
+   [#end PROPERTIES#]
+  </table>
+
+ </div>
+ [#if PROPERTY_ID!=""#]
+ <div class="col-md-6">
+
+  <h3>[#PROPERTY_TITLE#]</h3>
+
+  <form class="form" action="?" method="post">
+
+   <div class="form-group">
+    <label><#LANG_VALUE#>:</label>
+    <div class="controls">
+     <input type="text" class="form-control" value="[#PROPERTY_VALUE#]" disabled>
+    </div>
+   </div>
+
+
+   <div class="form-group">
+    <label><#LANG_LINKED_OBJECT#>:</label>
+    <div>
+     <input type="text" id="linked_object" name="linked_object" class="form-control" value="[#PROPERTY_LINKED_OBJECT#]">
+    </div>
+   </div>
+   <div class="form-group">
+    <label><#LANG_PROPERTY#>:</label>
+    <div>
+     <input type="text" id="linked_property" name="linked_property" class="form-control" value="[#PROPERTY_LINKED_PROPERTY#]">
+    </div>
+   </div>
+   <div class="form-group">
+    <label><#LANG_METHOD#>:</label>
+    <div>
+     <input type="text" id="linked_method" name="linked_method" class="form-control" value="[#PROPERTY_LINKED_METHOD#]">
+    </div>
+   </div>
+
+   [#module name="linkedobject" object_field="linked_object" property_field="linked_property" method_field="linked_method"#]
+
+   <div class="form-group">
+    <label><#LANG_UPDATED#>:</label>
+    <div class="controls">
+     <input type="text" class="form-control" value="[#PROPERTY_UPDATED#]" disabled>
+    </div>
+   </div>
+
+
+   <div class="form-group">
+    <input type="submit" class="btn btn-default btn-primary" value="<#LANG_SUBMIT#>">
+   </div>
+   <input type="hidden" name="id" value="<#ID#>">
+   <input type="hidden" name="view_mode" value="<#VIEW_MODE#>">
+   <input type="hidden" name="tab" value="<#TAB#>">
+   <input type="hidden" name="property_id" value="<#PROPERTY_ID#>">
+   <input type="hidden" name="mode" value="update">
+  </form>
+
+ </div>
+ [#endif#]
+</div>
+<!-- dataset2 (module) -->

@@ -1,0 +1,90 @@
+&nbsp;
+<!-- table mesh_devices search -->
+<!-- results -->
+<h3><#LANG_DEVICES#></h3>
+[#if RESULT#]
+<!-- paging -->
+<!-- / paging -->
+<!-- search results (list) -->
+
+<table  align=center class="table table-striped">
+ <thead>
+ <tr>
+  <th><#LANG_TITLE#></th>
+  <th>UID</th>
+  <th>Short name</th>
+  <th>Long name</th>
+  <th><#LANG_BATTERY_LEVEL#>, %</th>
+  <th><#LANG_LOCATION#></th>
+  <th><#LANG_UPDATED#></th>
+  <th>&nbsp;</th>
+ </tr>
+ </thead>
+<tbody>
+[#begin RESULT#]
+<tr>
+ <td>
+  <b><a href="?data_source=<#DATA_SOURCE#>&view_mode=edit_mesh_devices&id=[#ID#]">[#TITLE#]</a></b>
+  [#if IS_BASE="1"#]<spin style="color:green">(Gateway)</spin>[#endif#]
+ </td>
+ <td>
+   [#UID#]
+ </td>
+ <td>[#SHORT_NAME#]</td>
+ <td>[#LONG_NAME#]</td>
+ <td>
+  [#BATTERY_LEVEL#]
+ </td>
+ <td><a href="https://www.google.com/maps/search/?api=1&query=[#LATITUDE#]%2C[#LONGITUDE#]" target="_blank">[#LATITUDE#],[#LONGITUDE#]</a></td>
+ <td>[#UPDATED#]</td>
+ <td width="1%" nowrap>
+  <div>
+  [#if "<#ACTION#>"=="admin"#]
+   <a href="?data_source=<#DATA_SOURCE#>&view_mode=edit_mesh_devices&id=[#ID#]" class="btn btn-default" title="Edit"><i class="glyphicon glyphicon-pencil"></i></a>
+   <a href="?data_source=<#DATA_SOURCE#>&view_mode=edit_mesh_devices&id=[#ID#]&tab=data" class="btn btn-default" title="Edit"><i class="glyphicon glyphicon-th-list"></i></a>
+   <a href="?data_source=<#DATA_SOURCE#>&view_mode=edit_mesh_devices&id=[#ID#]&tab=text" class="btn btn-default" title="Edit"><i class="glyphicon glyphicon-envelope"></i></a>
+   <a href="?data_source=<#DATA_SOURCE#>&view_mode=edit_mesh_devices&id=[#ID#]&tab=history" class="btn btn-default" title="Edit"><i class="glyphicon glyphicon-th-large"></i></a>
+    <a href="?data_source=<#DATA_SOURCE#>&view_mode=delete_mesh_devices&id=[#ID#]" onClick="return confirm('Are you sure? Please confirm.')" class="btn btn-default" title="Delete"><i class="glyphicon glyphicon-remove"></i></a>
+  [#endif ACTION#]
+  </div>
+ </td>
+</tr>
+[#end RESULT#]
+</tbody>
+</table>
+<!-- / search results (list) -->
+<!-- paging -->
+<!-- / paging -->
+[#else RESULT#]
+<p>
+<font color="red"><#LANG_NO_RECORDS_FOUND#></font>
+</p>
+[#endif RESULT#]
+<!-- / results -->
+
+[#if CHANNELS#]
+<h3>Channels</h3>
+
+<table class="table">
+ <thead>
+ <tr>
+  <th>#</th>
+  <th><#LANG_NAME#></th>
+  <th><#LANG_UPDATED#></th>
+ </tr>
+ </thead>
+ [#begin CHANNELS#]
+ <tr>
+  <td>[#CHANNEL_NUM#]</td>
+  <td>
+   <a href="?view_mode=edit_mesh_channels&data_source=<#DATA_SOURCE#>&id=[#ID#]">[#CHANNEL_NAME#]</a>
+   [#if SEND_SYSTEM_MESSAGES="1"#]
+    (<#LANG_MIN_MSG_LEVEL#>: [#MIN_MSG_LEVEL#])
+   [#endif#]
+  </td>
+  <td>[#UPDATED#]</td>
+ </tr>
+ [#end CHANNELS#]
+</table>
+
+[#endif CHANNELS#]
