@@ -84,7 +84,17 @@
   <label for="hardware" class="col-lg-5 control-label">
    Hardware:
   </label>
-  <div class="col-lg-7"><input id="hardware" name="hardware" value="[#HARDWARE#]" disabled type="text" class="form-control"></div>
+  <div class="col-lg-7">
+    <input id="hardware" name="hardware" value="[#HARDWARE#]" disabled type="text" class="form-control">
+    [#if HARDWARE_displayName!=""#]
+     <div class="help-block">
+      [#HARDWARE_displayName#]
+      [#if HARDWARE_image!=""#]
+      <div><img src="[#HARDWARE_image#]" style="max-width:200px;max-height:200px"></div>
+      [#endif#]
+     </div>
+    [#endif#]
+  </div>
  </div>
 
 <div class="form-group">

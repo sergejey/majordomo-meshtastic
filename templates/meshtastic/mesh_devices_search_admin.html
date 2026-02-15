@@ -14,6 +14,7 @@
   <th>UID</th>
   <th>Short name</th>
   <th>Long name</th>
+  <th>Hardware</th>
   <th><#LANG_BATTERY_LEVEL#>, %</th>
   <th><#LANG_LOCATION#></th>
   <th><#LANG_UPDATED#></th>
@@ -31,11 +32,19 @@
    [#UID#]
  </td>
  <td>[#SHORT_NAME#]</td>
+
  <td>[#LONG_NAME#]</td>
+ <td>[#HW_MODEL#]</td>
  <td>
-  [#BATTERY_LEVEL#]
+  [#if BATTERY_LEVEL!="0"#][#BATTERY_LEVEL#][#else#]n/a[#endif#]
  </td>
- <td><a href="https://www.google.com/maps/search/?api=1&query=[#LATITUDE#]%2C[#LONGITUDE#]" target="_blank">[#LATITUDE#],[#LONGITUDE#]</a></td>
+  <td>
+  [#if LATITUDE!="0" && LONGITUDE!="0"#]
+  <a href="https://www.google.com/maps/search/?api=1&query=[#LATITUDE#]%2C[#LONGITUDE#]" target="_blank">[#LATITUDE#],[#LONGITUDE#]</a>
+  [#else#]
+  n/a
+  [#endif#]
+ </td>
  <td>[#UPDATED#]</td>
  <td width="1%" nowrap>
   <div>

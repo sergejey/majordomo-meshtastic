@@ -43,6 +43,18 @@ if ($this->mode == 'update') {
 }
 // step: default
 if ($this->tab == '') {
+    if ($rec['HARDWARE']) {
+        $devices_definitions = $this->getDevicesDefinitions();
+        if (is_array($devices_definitions) && isset($devices_definitions[$rec['HARDWARE']])) {
+           foreach($devices_definitions[$rec['HARDWARE']] as $k => $v) {
+               $out['HARDWARE_' . $k] = $v;
+           }
+           if (isset($devices_definitions[$rec['HARDWARE']]['images'][0])) {
+               $out['HARDWARE_image'] = 'https://flasher.meshtastic.org/img/devices/' . $devices_definitions[$rec['HARDWARE']]['images'][0];
+           }
+           //dprint($out);
+        }
+    }
 }
 // step: data
 if ($this->tab == 'data') {

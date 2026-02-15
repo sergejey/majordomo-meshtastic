@@ -28,6 +28,9 @@ if ($save_qry) {
 if (!$qry) $qry = "1";
 $sortby_mesh_devices = "UPDATED DESC";
 $out['SORTBY'] = $sortby_mesh_devices;
+
+$devices_definitions = $this->getDevicesDefinitions();
+
 // SEARCH RESULTS
 $res = SQLSelect("SELECT * FROM mesh_devices WHERE $qry ORDER BY " . $sortby_mesh_devices);
 if ($res[0]['ID']) {
@@ -35,7 +38,10 @@ if ($res[0]['ID']) {
     $total = count($res);
     for ($i = 0; $i < $total; $i++) {
         // some action for every record if required
-        $res[$i]['UPDATED']=getPassedText(strtotime($res[$i]['UPDATED']));
+        if (is_array($devices_definitions) && isset($devices_definitions[$res[$i]['HARDWARE']])) {
+            $res[$i]['HW_MODEL'] = $devices_definitions[$res[$i]['HARDWARE']]['displayName'];
+        }
+        $res[$i]['UPDATED'] = getPassedText(strtotime($res[$i]['UPDATED']));
     }
     $out['RESULT'] = $res;
 }

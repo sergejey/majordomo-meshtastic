@@ -157,7 +157,7 @@ class meshtastic extends module
             $this->config['MQTT_PASSWORD'] = gr('mqtt_password');
             $this->config['MQTT_PORT'] = gr('mqtt_port', 'int');
             $this->saveConfig();
-            setGlobal('cycle_meshtastic', 'restart');
+            setGlobal('cycle_meshtasticControl', 'restart');
             $this->redirect("?");
         }
         if (isset($this->data_source) && !$_GET['data_source'] && !$_POST['data_source']) {
@@ -210,6 +210,7 @@ class meshtastic extends module
         }
         if (preg_match('/\!(\w+)$/', $topic, $m)) {
             $gateway_uid = $m[1];
+            $gateway_uid = preg_replace('/^0/', '', $gateway_uid);
             SQLExec("UPDATE mesh_devices SET IS_BASE=1 WHERE IS_BASE=0 AND UID='" . $gateway_uid . "'");
             SQLExec("UPDATE mesh_devices SET IS_BASE=0 WHERE IS_BASE=1 AND UID!='" . $gateway_uid . "'");
         }
@@ -416,6 +417,28 @@ class meshtastic extends module
     function usual(&$out)
     {
         $this->admin($out);
+    }
+
+    function getDevicesDefinitions()
+    {
+        $devices_json_path = ROOT . 'cms/cached/meshtastic_devices.json';
+        if (!file_exists($devices_json_path) || filemtime($devices_json_path) < (time() - 60 * 60 * 24 * 30)) {
+            $data = getURL('https://raw.githubusercontent.com/meshtastic/Meshtastic-Android/refs/heads/main/app/src/main/assets/device_hardware.json');
+            SaveFile($devices_json_path, $data);
+        }
+
+        if (file_exists($devices_json_path)) {
+            $data = LoadFile($devices_json_path);
+            $devices_data = json_decode($data, true);
+            if (is_array($devices_data)) {
+                $result = array();
+                foreach($devices_data as $k => $v) {
+                    $result[$v['hwModel']] = $v;
+                }
+                return $result;
+            }
+        }
+        return false;
     }
 
     /**
