@@ -5,23 +5,24 @@
     <td><#LANG_TITLE#></td>
     <td><#LANG_VALUE#></td>
     <td><#LANG_UPDATED#></td>
+    [#if "<#ACTION#>"=="admin"#]
     <td><#LANG_LINKED_OBJECT#></td>
-    <td>&nbsp;nbsp;</td>
+    <td>&nbsp;</td>
+    [#endif ACTION#]
    </tr>
    [#begin PROPERTIES#]
    <tr>
     <td><b><a href="?id=<#ID#>&tab=<#TAB#>&view_mode=<#VIEW_MODE#>&property_id=[#ID#]">[#TITLE#]</a></b></td>
     <td>[#VALUE#]</td>
     <td >[#UPDATED#]</td>
+    [#if "<#ACTION#>"=="admin"#]
     <td>
      [#if LINKED_OBJECT!=""#][#LINKED_OBJECT#][#endif#]
      [#if LINKED_PROPERTY!=""#].[#LINKED_PROPERTY#][#endif#]
      [#if LINKED_METHOD!=""#] &gt; [#LINKED_METHOD#][#endif#]
     </td>
     <td><a href="?id=<#ID#>&tab=<#TAB#>&view_mode=<#VIEW_MODE#>&property_id=[#ID#]" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i></td>
-    <!--#
-    <td><a href="?id=<#ID#>&tab=<#TAB#>&view_mode=<#VIEW_MODE#>&delete_id=[#ID#]" onClick="return confirm('<#LANG_ARE_YOU_SURE#>');" class="btn btn-default"><i class="glyphicon glyphicon-remove"></i></td>
-    #-->
+    [#endif ACTION#]
    </tr>
    [#end PROPERTIES#]
   </table>

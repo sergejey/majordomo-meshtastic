@@ -11,12 +11,14 @@
     <input type="hidden" name="tab" value="<#TAB#>">
 </form>
 &nbsp;
-[#if TEXTS#]
+
+<div class="dynamic_content" id="links_content">
 <table class="table">
     <thead>
     <tr>
         <th><#LANG_ADDED#></th>
         <th>From</th>
+        <th>&nbsp;</th>
         <th>To</th>
         <th>Message</th>
         <th>Channel</th>
@@ -26,11 +28,11 @@
     <tr>
         <td>[#ADDED#]</td>
         <td>[#FROM_UID#]</td>
+        <td>&rarr;</td>
         <td>[#TO_UID#]</td>
         <td>[#MESSAGE#]</td>
         <td>[#CHANNEL#]</td>
     </tr>
     [#end TEXTS#]
 </table>
-[#else TEXTS#]
-[#endif TEXTS#]
+<!--/dynamic_content--></div>

@@ -379,12 +379,14 @@ class meshtastic extends module
         $payload = array(
             'from' => hexdec($base['UID']),
             'to' => hexdec($uid),
+            'channel' => 0,
             'type' => 'sendtext',
             'payload' => $message
         );
         $base_topic = $this->config['BASE_TOPIC'];
         if ($base_topic == '') $base_topic = 'msh';
         $topic = $base_topic . '/2/json/mqtt/';
+        //DebMes("Sending to $topic:\n" . json_encode($payload, JSON_PRETTY_PRINT), 'meshtastic_mqtt');
         addToOperationsQueue('meshtastic_queue', $topic, json_encode($payload));
     }
 

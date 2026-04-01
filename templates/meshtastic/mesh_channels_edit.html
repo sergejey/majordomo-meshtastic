@@ -26,8 +26,9 @@
             <input type="hidden" name="id" value="[#ID#]">
         </form>
 
-        [#if MESSAGES#]
+
         &nbsp;
+        <div class="dynamic_content" id="links_content">
         <table class="table">
             <thead>
             <tr>
@@ -43,20 +44,17 @@
                     [#FROM_UID#]
                     [#if DEVICE_ID!=""#]
                     &mdash;
-                    <a href="?view_mode=edit_mesh_devices&id=[#DEVICE_ID#]">[#DEVICE_TITLE#]</a>
+                    <a href="?view_mode=edit_mesh_devices&id=[#DEVICE_ID#]&tab=text">[#DEVICE_TITLE#]</a>
                     [#endif#]
                 </td>
                 <td>[#MESSAGE#]</td>
             </tr>
             [#end MESSAGES#]
         </table>
-        [#else MESSAGES#]
-        &nbsp;
-        <div class="alert alert-info">
-            No messages
-        </div>
-        [#endif MESSAGES#]
+            <!--/dynamic_content--></div>
+
     </div>
+    [#if "<#ACTION#>"=="admin"#]
     <div class="col-md-4">
         <h4><#LANG_EDIT#> [#CHANNEL_NAME#]</h4>
         <form action="?" method="post" class="form">
@@ -83,4 +81,5 @@
                 </div>
         </form>
     </div>
+    [#endif ACTION#]
 </div>

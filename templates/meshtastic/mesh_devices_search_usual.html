@@ -1,0 +1,56 @@
+<div class="row">
+ [#if CHANNELS#]
+ <div class="col-md-6">
+  <h3>Channels</h3>
+  <table class="table">
+   <thead>
+   <tr>
+    <th>#</th>
+    <th><#LANG_NAME#></th>
+    <th><#LANG_UPDATED#></th>
+   </tr>
+   </thead>
+   [#begin CHANNELS#]
+   <tr>
+    <td>[#CHANNEL_NUM#]</td>
+    <td>
+     <a href="?view_mode=edit_mesh_channels&data_source=<#DATA_SOURCE#>&id=[#ID#]">[#CHANNEL_NAME#]</a>
+     [#if SEND_SYSTEM_MESSAGES="1"#]
+     (<#LANG_MIN_MSG_LEVEL#>: [#MIN_MSG_LEVEL#])
+     [#endif#]
+    </td>
+    <td>[#UPDATED#]</td>
+   </tr>
+   [#end CHANNELS#]
+  </table>
+
+ </div>
+ [#endif CHANNELS#]
+ [#if RESULT#]
+ <div class="col-md-6">
+  <h3><#LANG_DEVICES#></h3>
+  <table  align=center class="table">
+   <thead>
+   <tr>
+    <th><#LANG_TITLE#></th>
+    <th><#LANG_UPDATED#></th>
+   </tr>
+   </thead>
+   <tbody>
+   [#begin RESULT#]
+   <tr>
+    <td>
+     <b><a href="?data_source=<#DATA_SOURCE#>&view_mode=edit_mesh_devices&id=[#ID#]&tab=text">[#TITLE#]</a></b>
+     [#if IS_BASE="1"#]<spin style="color:green">(Gateway)</spin>[#endif#]
+     [#if BATTERY_LEVEL!="0"#]battery: [#BATTERY_LEVEL#]%[#endif#]
+    </td>
+    <td>[#UPDATED#]</td>
+   </tr>
+   [#end RESULT#]
+   </tbody>
+  </table>
+
+ </div>
+ [#endif RESULT#]
+</div>
+
